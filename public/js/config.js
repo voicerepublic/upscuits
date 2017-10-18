@@ -1,6 +1,7 @@
 // array of Monitor-specific API keys or Main API key to list all monitors
 var __apiKeys = [
-	process.env['UPTIME_ROBOT_API_KEY']
+    m779522932-791f3b0070d4dd5017f6ba61, // Blog
+    m779522862-73f4e986162044d7bccc1df6 // Live
 ];
 
 // refresh interval (in seconds)
