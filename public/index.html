@@ -1,168 +1,168 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-	<meta charset="utf-8">
+  <head>
+    <meta charset="utf-8">
 
-	<title data-i18n="head.title">Voice Republic - Status Monitor</title>
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
-	<link href="css/upscuits.min.css?rel=1.4.4" rel="stylesheet">
-</head>
+    <title data-i18n="head.title">Voice Republic - Status Monitor</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+    <link href="css/upscuits.min.css?rel=1.4.4" rel="stylesheet">
+  </head>
 
-<body>
-	<div class="container">
-		<div class="jumbotron">
-                  <h1><img style="width: 100px" src="https://voicerepublic.com/images/logos/vr_red.svg"> Voice Republic</h1>
-			<p data-i18n="head.hero">
-			      Server health monitoring
-			</p>
-		</div>
+  <body>
+    <div class="container">
+      <div class="jumbotron">
+        <h1><img style="width: 100px" src="https://voicerepublic.com/images/logos/vr_red.svg"> Voice Republic</h1>
+	<p data-i18n="head.hero">
+	  Server health monitoring
+	</p>
+      </div>
 
-		<!-- progress bar of loaded servers -->
-		<div class="progress">
-			<div class="progress-bar progress-bar-info loading bar" role="progressbar" aria-valuemin="0" aria-valuemax="100">
-				<span class="sr-only"></span>
-			</div>
-		</div>
-
-		<!-- legenda of graphs -->
-		<div class="row">
-			<div class="col-md-8 col-md-offset-4">
-				<div class="well well-xs">
-					<div class="donut">
-						<div class="title" data-i18n="times.Last 24 hr">Last 24 hr</div>
-					</div>
-					<div class="donut">
-						<div class="title" data-i18n="times.Last 7 days">Last 7 days</div>
-					</div>
-					<div class="donut">
-						<div class="title" data-i18n="times.Last 30 days">Last 30 days</div>
-					</div>
-					<div class="donut">
-						<div class="title" data-i18n="times.Last year">Last year</div>
-					</div>
-					<div class="donut">
-						<div class="title"  data-i18n="times.All time">All time</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		<div id="server-container"></div>
-
-		<!-- legenda of graphs (again) -->
-		<div class="row">
-			<div class="col-md-8 col-md-offset-4">
-				<div class="well well-xs">
-					<div class="donut">
-						<div class="title" data-i18n="times.Last 24 hr">Last 24 hr</div>
-					</div>
-					<div class="donut">
-						<div class="title" data-i18n="times.Last 7 days">Last 7 days</div>
-					</div>
-					<div class="donut">
-						<div class="title" data-i18n="times.Last 30 days">Last 30 days</div>
-					</div>
-					<div class="donut">
-						<div class="title" data-i18n="times.Last year">Last year</div>
-					</div>
-					<div class="donut">
-						<div class="title"  data-i18n="times.All time">All time</div>
-					</div>
-				</div>
-			</div>
-		</div>
-
-		<!-- count down timer + progress bar -->
-		<div class="col-md-2">
-			<i class="icon-refresh"></i> <span id="last-update"></span>
-		</div>
-		<div class="progress">
-			<div class="progress-bar progress-bar-info countdown" role="progressbar" aria-valuemin="0" aria-valuemax="100">
-				<span class="sr-only"></span>
-			</div>
-		</div>
-
-		<!-- modal windows-->
-		<div class="modal fade" id="modal-about">
-			<div class="modal-dialog">
-				<div class="modal-content">
-					<div class="modal-header">
-						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-							<h4 class="modal-title" data-i18n="modal-about.title">What does this page mean?</h4>
-						</div>
-					<div class="modal-body" data-i18n="[html]modal-about.content">
-						<p>At this page you can see the status of different servers/ apps.</p>
-						<p>Each gauge shows the uptime of last day, week, month, year and all time. (These calculations are not very accurate...)</p>
-						<p>Click on the <i class="icon-time"></i>-icon to see the log of last month. Or open the monitored page by clicking on <i class="icon-link"></i></p>
-						<p>The page automatically refreshes</p>
-					</div>
-					<div class="modal-footer">
-						<a href="#" class="btn btn-primary" data-dismiss="modal" data-i18n="close">close</a>
-					</div>
-				</div>
-			</div>
-		</div>
-
-		<!-- navigation bar -->
-		<div class="navbar navbar-inverse navbar-fixed-bottom">
-		</div>
+      <!-- progress bar of loaded servers -->
+      <div class="progress">
+	<div class="progress-bar progress-bar-info loading bar" role="progressbar" aria-valuemin="0" aria-valuemax="100">
+	  <span class="sr-only"></span>
 	</div>
+      </div>
 
-	<!-- mustache template for server row -->
-	<script type="template/mustache" id="server-template">
-		<div class="well {{alert}}">
-			<div class="row">
-				<div class="col-md-4">
-					<h2>
-						{{friendlyname}}
-						<span class="label label-status label-{{label}}"><i class="{{statusicon}}"></i></span>
-					</h2>
+      <!-- legenda of graphs -->
+      <div class="row">
+	<div class="col-md-8 col-md-offset-4">
+	  <div class="well well-xs">
+	    <div class="donut">
+	      <div class="title" data-i18n="times.Last 24 hr">Last 24 hr</div>
+	    </div>
+	    <div class="donut">
+	      <div class="title" data-i18n="times.Last 7 days">Last 7 days</div>
+	    </div>
+	    <div class="donut">
+	      <div class="title" data-i18n="times.Last 30 days">Last 30 days</div>
+	    </div>
+	    <div class="donut">
+	      <div class="title" data-i18n="times.Last year">Last year</div>
+	    </div>
+	    <div class="donut">
+	      <div class="title"  data-i18n="times.All time">All time</div>
+	    </div>
+	  </div>
+	</div>
+      </div>
+      <div id="server-container"></div>
 
-					<div class="btn-group">
-						<a href="javascript:void(0)" class="btn btn-default btn-sm log tip" title="Log of last month" data-i18n="[title]Log of last month"><i class="icon-time"></i></a>
-						<a href="{{url}}" target="_blank" class="btn btn-default btn-sm tip" title="Open monitored page" data-i18n="[title]Open monitored page"><i class="icon-link"></i></a>
-					</div>
-					<div class="log{{id}} hide">
-						<ul class="list-unstyled">
-							{{#log}}
-								<li>
-									<span class="btn btn-xs btn-{{labeltype}}"><i class="icon-{{typeicon}} icon-white"></i></span>
-									&nbsp;{{datetime}}
-								</li>
-							{{/log}}
-						</ul>
-					</div>
-				</div>
-				<div class="col-md-8 graphs">
-					{{#charts}}
-						<div class="donut">
-							<canvas width="90" height="90" uptime="{{uptime}}"></canvas>
-							<div class="uptime">
-								{{uptime}}%
-							</div>
-						</div>
-					{{/charts}}
-				</div>
-			</div>
-		</div>
-	</script>
+      <!-- legenda of graphs (again) -->
+      <div class="row">
+	<div class="col-md-8 col-md-offset-4">
+	  <div class="well well-xs">
+	    <div class="donut">
+	      <div class="title" data-i18n="times.Last 24 hr">Last 24 hr</div>
+	    </div>
+	    <div class="donut">
+	      <div class="title" data-i18n="times.Last 7 days">Last 7 days</div>
+	    </div>
+	    <div class="donut">
+	      <div class="title" data-i18n="times.Last 30 days">Last 30 days</div>
+	    </div>
+	    <div class="donut">
+	      <div class="title" data-i18n="times.Last year">Last year</div>
+	    </div>
+	    <div class="donut">
+	      <div class="title"  data-i18n="times.All time">All time</div>
+	    </div>
+	  </div>
+	</div>
+      </div>
 
-	<!-- mustache template for no monitors found -->
-	<script type="template/mustache" id="no-monitors-template">
-		<div class="alert alert-danger">
-			<strong data-i18n="no-api.Burned biscuits">Burned biscuits!</strong> <span data-i18n="no-api.content1">Seems like you forgot one ingredient: the Monitor API keys in</span> <a href="js/config.js">js/config.js</a>.<br>
-			<span data-i18n="no-api.content2">Did you follow all the steps in the recipe?</span> <a href="https://github.com/digibart/upscuits/blob/master/readme.md" data-i18n="no-api.readme">readme</a>
-		</div>
+      <!-- count down timer + progress bar -->
+      <div class="col-md-2">
+	<i class="icon-refresh"></i> <span id="last-update"></span>
+      </div>
+      <div class="progress">
+	<div class="progress-bar progress-bar-info countdown" role="progressbar" aria-valuemin="0" aria-valuemax="100">
+	  <span class="sr-only"></span>
+	</div>
+      </div>
 
-	</script>
+      <!-- modal windows-->
+      <div class="modal fade" id="modal-about">
+	<div class="modal-dialog">
+	  <div class="modal-content">
+	    <div class="modal-header">
+	      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+	      <h4 class="modal-title" data-i18n="modal-about.title">What does this page mean?</h4>
+	    </div>
+	    <div class="modal-body" data-i18n="[html]modal-about.content">
+	      <p>At this page you can see the status of different servers/ apps.</p>
+	      <p>Each gauge shows the uptime of last day, week, month, year and all time. (These calculations are not very accurate...)</p>
+	      <p>Click on the <i class="icon-time"></i>-icon to see the log of last month. Or open the monitored page by clicking on <i class="icon-link"></i></p>
+	      <p>The page automatically refreshes</p>
+	    </div>
+	    <div class="modal-footer">
+	      <a href="#" class="btn btn-primary" data-dismiss="modal" data-i18n="close">close</a>
+	    </div>
+	  </div>
+	</div>
+      </div>
+
+      <!-- navigation bar -->
+      <div class="navbar navbar-inverse navbar-fixed-bottom">
+      </div>
+    </div>
+
+    <!-- mustache template for server row -->
+    <script type="template/mustache" id="server-template">
+      <div class="well {{alert}}">
+	<div class="row">
+	  <div class="col-md-4">
+	    <h2>
+	      {{friendlyname}}
+	      <span class="label label-status label-{{label}}"><i class="{{statusicon}}"></i></span>
+	    </h2>
+
+	    <div class="btn-group">
+	      <a href="javascript:void(0)" class="btn btn-default btn-sm log tip" title="Log of last month" data-i18n="[title]Log of last month"><i class="icon-time"></i></a>
+	      <a href="{{url}}" target="_blank" class="btn btn-default btn-sm tip" title="Open monitored page" data-i18n="[title]Open monitored page"><i class="icon-link"></i></a>
+	    </div>
+	    <div class="log{{id}} hide">
+	      <ul class="list-unstyled">
+		{{#log}}
+		<li>
+		  <span class="btn btn-xs btn-{{labeltype}}"><i class="icon-{{typeicon}} icon-white"></i></span>
+		  &nbsp;{{datetime}}
+		</li>
+		{{/log}}
+	      </ul>
+	    </div>
+	  </div>
+	  <div class="col-md-8 graphs">
+	    {{#charts}}
+	    <div class="donut">
+	      <canvas width="90" height="90" uptime="{{uptime}}"></canvas>
+	      <div class="uptime">
+		{{uptime}}%
+	      </div>
+	    </div>
+	    {{/charts}}
+	  </div>
+	</div>
+      </div>
+    </script>
+
+    <!-- mustache template for no monitors found -->
+    <script type="template/mustache" id="no-monitors-template">
+      <div class="alert alert-danger">
+	<strong data-i18n="no-api.Burned biscuits">Burned biscuits!</strong> <span data-i18n="no-api.content1">Seems like you forgot one ingredient: the Monitor API keys in</span> <a href="js/config.js">js/config.js</a>.<br>
+	<span data-i18n="no-api.content2">Did you follow all the steps in the recipe?</span> <a href="https://github.com/digibart/upscuits/blob/master/readme.md" data-i18n="no-api.readme">readme</a>
+      </div>
+
+    </script>
 
 
-	<script src="js/vendors.min.js?rel=1.4.4" type="text/javascript"></script>
-	<script src="js/config.js?rel=1.4.4" type="text/javascript"></script>
-	<script src="js/upscuits.js?rel=1.4.4" type="text/javascript"></script>
-	<script type="text/javascript">
-		jQuery(document).ready(myApp.dashboard.init);
-	</script>
+    <script src="js/vendors.min.js?rel=1.4.4" type="text/javascript"></script>
+    <script src="js/config.js?rel=1.4.4" type="text/javascript"></script>
+    <script src="js/upscuits.js?rel=1.4.4" type="text/javascript"></script>
+    <script type="text/javascript">
+      jQuery(document).ready(myApp.dashboard.init);
+    </script>
 
-</body>
+  </body>
 </html>
